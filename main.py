@@ -7,7 +7,7 @@ print("impotred successfully...")
 
 prompt="""
 
-        you are a smart assistant so please let me know what is machine leanring in smartest way?
+        you are a cricket expert now just tell me when RCB will win the IPL?
 """
 
 bedrock=boto3.client(service_name="bedrock-runtime")
