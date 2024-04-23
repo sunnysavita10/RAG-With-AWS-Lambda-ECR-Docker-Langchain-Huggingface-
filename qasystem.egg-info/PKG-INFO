@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: qasystem
+Version: 0.0.1
+Author: sunny
+Author-email: sunny.savita@ineuron.ai
+Requires-Dist: langchain
+Requires-Dist: langchainhub
+Requires-Dist: bs4
+Requires-Dist: tiktoken
+Requires-Dist: openai
+Requires-Dist: boto3==1.34.37
+Requires-Dist: langchain_community
+Requires-Dist: chromadb
+Requires-Dist: awscli
+Requires-Dist: streamlit
+Requires-Dist: pypdf
+Requires-Dist: faiss-cpu

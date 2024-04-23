@@ -4,11 +4,8 @@ from langchain.llms.bedrock import Bedrock
 import boto3
 from langchain.prompts import PromptTemplate
 from QASystem.ingestion import get_vector_store
-from QASystem.ingestion import data_ingestion
-from langchain_community.embeddings import BedrockEmbeddings
 
 bedrock=boto3.client(service_name="bedrock-runtime")
-bedrock_embeddings=BedrockEmbeddings(model_id="amazon.titan-embed-text-v1",client=bedrock)
 
 
 prompt_template = """
@@ -31,7 +28,7 @@ PROMPT=PromptTemplate(
 
 
 def get_llama2_llm():
-    llm=Bedrock(model_id="meta.llama2-13b-chat-v1",client=bedrock)
+    llm=Bedrock(model_id="meta.llama2-13b-chat-v1",client=bedrock,model_kwargs={"maxTokens":512})
     
     return llm
 
@@ -52,10 +49,8 @@ def get_response_llm(llm,vectorstore_faiss,query):
     return answer["result"]
     
 if __name__=='__main__':
-    #docs=data_ingestion()
-    #vectorstore_faiss=get_vector_store(docs)
-    faiss_index=FAISS.load_local("faiss_index",bedrock_embeddings,allow_dangerous_deserialization=True)
-    query="What is RAG token?"
+    vectorstore_faiss=get_vector_store()
+    query="what is RAG token?"
     llm=get_llama2_llm()
-    print(get_response_llm(llm,faiss_index,query))
+    get_response_llm(llm,vectorstore_faiss,query)
     
